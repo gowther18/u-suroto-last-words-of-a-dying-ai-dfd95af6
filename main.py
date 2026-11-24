@@ -32,6 +32,8 @@ def main() -> None:
         )
     if not LINE.strip():
         raise SystemExit("entry text is only white space")
+    if "\n" in LINE or "\r" in LINE:
+        raise SystemExit("entry text must be a single line")
     out = Path(OUTPUT_DIR)
     out.mkdir(parents=True, exist_ok=True)
     out.joinpath("entry.txt").write_text(LINE, encoding="utf-8")
